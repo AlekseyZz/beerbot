@@ -1,0 +1,9 @@
+{
+  "bot": {
+    "token": "token",
+    "settings": {
+      "command_prefix": "$",
+      "case_insensitive": true
+    }
+  }
+}
