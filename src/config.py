@@ -3,7 +3,7 @@ from discord import Intents
 
 config = {
         "bot": {
-                "token": "Nzc5MzI0MzAzNjE0NDEwNzcy.X7e4UQ.LLBHlgQpXjOHk67LuESS0IgVhdc",
+                "token": "token here",
                 "settings": {
                         "command_prefix": "$",
                         "case_insensitive": True,
