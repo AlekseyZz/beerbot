@@ -12,11 +12,11 @@ bot = commands.Bot(**config["bot"]["settings"])
 @bot.event
 async def on_ready() -> None:
     print(f"{bot.user} запущен, ID: {bot.user.id}")
-    cogs_loader.loading_cogs(bot, config["bot"]["cogs"])
+    cogs_loader.loading_cogs(bot = bot, cogs = config["bot"]["cogs"])
 
 
 @bot.group(name = "cog",
-           aliases = ("modules", "module" ,"модули", "модуль"))
+           aliases = ("modules", "module", "модули", "модуль"))
 @commands.is_owner()
 async def cogs(ctx: commands.Context) -> None:
     """
