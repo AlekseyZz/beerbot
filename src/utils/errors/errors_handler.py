@@ -1,14 +1,16 @@
 import discord
 from discord.ext import commands
 
-from src.utils.errors import error_models
+from src.utils.errors import errors_models
+from src.config import config
 
 
 async def command_error_detection(ctx: commands.Context, error):
     async def own_command_error_message(problem, solution):
-        embed = discord.Embed()
+        embed = discord.Embed(color = config["bot"]["messages"]["error"]["color"])
         embed.add_field(name = "Проблема:", value = f"{problem}")
         embed.add_field(name = "Решение:", value = f"{solution}")
+        embed.set_footer(text = f"При выполнении команды {ctx.command.name} возникла ошибка!")
         await ctx.send(embed = embed)
 
     if isinstance(error, commands.CommandNotFound):
@@ -52,13 +54,13 @@ async def command_error_detection(ctx: commands.Context, error):
                 f"Укажите существующий обьект при использовании:\n`{ctx.bot.command_prefix}{ctx.command.usage}`"
         )
 
-    elif isinstance(error, error_models.SubcommandIsNone):
+    elif isinstance(error, errors_models.SubcommandIsNone):
         await own_command_error_message(
                 "Вы не указали подкоманду!",
                 f"Укажите подкоманду из группы {error.commands_group}"
         )
 
-    elif isinstance(error, error_models.CogImportError):
+    elif isinstance(error, errors_models.CogImportError):
         await own_command_error_message(
                 "Ошибка при импортировании кога!",
                 f"""Исправьте проблему:
