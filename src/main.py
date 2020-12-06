@@ -7,6 +7,7 @@ from discord.ext import commands
 
 from src.utils.loaders import cogs_loader
 from src.utils.errors import errors_models
+from src.utils.messages import messages_models
 from src.config import config
 
 bot = commands.Bot(**config["bot"]["settings"])
@@ -49,9 +50,8 @@ async def cogs_load(ctx: commands.Context, cog: str) -> None:
     try:
         bot.load_extension(f'{config["bot"]["cogs_path"]}.{cog}')
 
-        embed = discord.Embed(color = config["bot"]["messages"]["success"]["color"])
+        embed: discord.Embed = await messages_models.generate_message(status = "success", ctx = ctx)
         embed.set_author(name = f"Загрузка кога {cog}", icon_url = bot.user.avatar_url)
-        embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
         raise errors_models.CogImportError(error)
@@ -73,9 +73,8 @@ async def cogs_unload(ctx: commands, cog: str) -> None:
     try:
         bot.unload_extension(f'{config["bot"]["cogs_path"]}.{cog}')
 
-        embed = discord.Embed(color = config["bot"]["messages"]["success"]["color"])
+        embed: discord.Embed = await messages_models.generate_message(status = "success", ctx = ctx)
         embed.set_author(name = f"Отгрузка кога {cog}", icon_url = bot.user.avatar_url)
-        embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
         raise errors_models.CogImportError(error)
@@ -97,9 +96,8 @@ async def cogs_reload(ctx: commands.Context, cog: str) -> None:
     try:
         bot.reload_extension(f'{config["bot"]["cogs_path"]}.{cog}')
 
-        embed = discord.Embed(color = config["bot"]["messages"]["success"]["color"])
+        embed: discord.Embed = await messages_models.generate_message(status = "success", ctx = ctx)
         embed.set_author(name = f"Перезагрузка кога {cog}", icon_url = bot.user.avatar_url)
-        embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
         raise errors_models.CogImportError(error)
