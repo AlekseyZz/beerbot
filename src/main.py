@@ -1,10 +1,13 @@
+import os
+import site
+site.addsitedir(os.getcwd())
+
 import discord
 from discord.ext import commands
 
 from src.utils.loaders import cogs_loader
 from src.utils.errors import error_models
 from src.config import config
-
 
 bot = commands.Bot(**config["bot"]["settings"])
 
