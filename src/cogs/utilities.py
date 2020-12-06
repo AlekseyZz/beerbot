@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+from src.config import config
+
 
 class Utilities(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -29,7 +31,7 @@ class Utilities(commands.Cog):
             if invite.inviter.id == member.id:
                 embed.add_field(name = f"Приглашение {invite.code}", value = f"""Канал: {invite.channel.mention}
                                                                                 Использований: {invite.uses}
-                                                                                Создано: {invite.created_at}
+                                                                                Создано: {invite.created_at.strftime(config["discord"]["interface"]["time_format"])}
                                                                                 """, inline = False)
 
         embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
