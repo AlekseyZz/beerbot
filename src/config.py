@@ -11,12 +11,13 @@ config = {
                 },
                 "messages": {
                         "success": {
-                                "color": 108734,
-                                "text": "Успешно"
+                                "color": 0x00CC6A,
                         },
                         "error": {
-                                "color": 871034,
-                                "text": "Безуспешно"
+                                "color": 0xE74856,
+                        },
+                        "informational": {
+                                "color": 0x0099BC
                         }
                 },
                 "cogs": ["admin", "utilities"],
