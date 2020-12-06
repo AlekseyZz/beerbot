@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from src.config import config
+from src.utils.messages import messages_models
 
 
 class Utilities(commands.Cog):
@@ -24,7 +25,7 @@ class Utilities(commands.Cog):
         if member is None:
             member = ctx.author
 
-        embed = discord.Embed()
+        embed: discord.Embed = await messages_models.generate_message(status = "informational", ctx = ctx)
         embed.set_author(name = f"Приглашения {member.name}", icon_url = member.avatar_url)
 
         for invite in await ctx.guild.invites():
@@ -34,7 +35,6 @@ class Utilities(commands.Cog):
                                                                                 Создано: {invite.created_at.strftime(config["discord"]["interface"]["time_format"])}
                                                                                 """, inline = False)
 
-        embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
         await ctx.send(embed = embed)
 
 

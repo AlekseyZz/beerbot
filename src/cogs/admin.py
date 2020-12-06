@@ -1,6 +1,6 @@
 from discord.ext import commands
 
-from src.utils.errors import error_models
+from src.utils.errors import errors_models
 
 
 class Admin(commands.Cog):
