@@ -6,7 +6,7 @@ import discord
 from discord.ext import commands
 
 from src.utils.loaders import cogs_loader
-from src.utils.errors import error_models
+from src.utils.errors import errors_models
 from src.config import config
 
 bot = commands.Bot(**config["bot"]["settings"])
@@ -30,7 +30,7 @@ async def cogs(ctx: commands.Context) -> None:
     """
 
     if ctx.invoked_subcommand is None:
-        raise error_models.SubcommandIsNone(ctx.command)
+        raise errors_models.SubcommandIsNone(ctx.command)
 
 
 @cogs.command(name = "load",
@@ -54,7 +54,7 @@ async def cogs_load(ctx: commands.Context, cog: str) -> None:
         embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
-        raise error_models.CogImportError(error)
+        raise errors_models.CogImportError(error)
 
 
 @cogs.command(name = "unload",
@@ -78,7 +78,7 @@ async def cogs_unload(ctx: commands, cog: str) -> None:
         embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
-        raise error_models.CogImportError(error)
+        raise errors_models.CogImportError(error)
 
 
 @cogs.command(name = "reload",
@@ -102,7 +102,7 @@ async def cogs_reload(ctx: commands.Context, cog: str) -> None:
         embed.set_footer(text = f"Команда {ctx.command.name} была выполнена успешно!")
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
-        raise error_models.CogImportError(error)
+        raise errors_models.CogImportError(error)
 
 
 if __name__ == "__main__":
