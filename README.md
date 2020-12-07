@@ -8,13 +8,14 @@
 1. Клонируйте репозиторий
 2. Установите [poetry](https://python-poetry.org/docs/#installation)
 3. Создайте виртуальное окружение при помощи установки зависимостей из [файла poetry.lock](https://gitlab.com/beer-server/beerbot/-/blob/master/poetry.lock) по команде `poetry install`
-4. Запустите файл [main.py](https://gitlab.com/beer-server/beerbot/-/blob/master/src/main.py)
-5. Готово!
+4. В [конфиге](https://gitlab.com/beer-server/beerbot/-/blob/master/src/config.py) вставьте свой токен в соответствующее место 
+5. Запустите файл [main.py](https://gitlab.com/beer-server/beerbot/-/blob/master/src/main.py)
+6. Готово!
 
 ## Планы
 1. Утилиты:
     - [x] Информация о приглашениях участников
-    - [ ] Информация о сервере
+    - [x] Информация о сервере
     - [ ] Информация об участнике
     - [ ] Информация о канале
     - [ ] Информация об эмодзи
