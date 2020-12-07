@@ -1,4 +1,4 @@
-# Пивоварёный бот
+# Пивоварённый бот
 ![Онлайн в Discord](https://img.shields.io/discord/753623970863120434?label=Пивная%20Партия)
 ![Python версия](https://img.shields.io/badge/Python-3.8.3-brightgreen)
 
