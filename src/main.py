@@ -1,12 +1,13 @@
 import os
 import site
-site.addsitedir(os.getcwd())
+site.addsitedir(os.path.dirname(os.getcwd()))
 
 import discord
 from discord.ext import commands
 
 from src.utils.loaders import cogs_loader
 from src.utils.errors import errors_models
+from src.utils.errors import errors_handler
 from src.utils.messages import messages_models
 from src.config import config
 
@@ -17,6 +18,11 @@ bot = commands.Bot(**config["bot"]["settings"])
 async def on_ready() -> None:
     print(f"{bot.user} запущен, ID: {bot.user.id}")
     cogs_loader.loading_cogs(bot = bot, cogs = config["bot"]["cogs"])
+
+
+@bot.event
+async def on_command_error(ctx: commands.Context, error: commands.CommandError) -> None:
+    await errors_handler.command_error_detection(ctx, error)
 
 
 @bot.group(name = "cog",
@@ -50,7 +56,7 @@ async def cogs_load(ctx: commands.Context, cog: str) -> None:
     try:
         bot.load_extension(f'{config["bot"]["cogs_path"]}.{cog}')
 
-        embed: discord.Embed = await messages_models.generate_message(status = "success", ctx = ctx)
+        embed: discord.Embed = await messages_models.generate_message_success(status = "success", ctx = ctx)
         embed.set_author(name = f"Загрузка кога {cog}", icon_url = bot.user.avatar_url)
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
@@ -73,7 +79,7 @@ async def cogs_unload(ctx: commands, cog: str) -> None:
     try:
         bot.unload_extension(f'{config["bot"]["cogs_path"]}.{cog}')
 
-        embed: discord.Embed = await messages_models.generate_message(status = "success", ctx = ctx)
+        embed: discord.Embed = await messages_models.generate_message_success(status = "success", ctx = ctx)
         embed.set_author(name = f"Отгрузка кога {cog}", icon_url = bot.user.avatar_url)
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
@@ -96,7 +102,7 @@ async def cogs_reload(ctx: commands.Context, cog: str) -> None:
     try:
         bot.reload_extension(f'{config["bot"]["cogs_path"]}.{cog}')
 
-        embed: discord.Embed = await messages_models.generate_message(status = "success", ctx = ctx)
+        embed: discord.Embed = await messages_models.generate_message_success(status = "success", ctx = ctx)
         embed.set_author(name = f"Перезагрузка кога {cog}", icon_url = bot.user.avatar_url)
         await ctx.send(embed = embed)
     except (ImportError, AttributeError) as error:
