@@ -2,22 +2,18 @@ import discord
 from discord.ext import commands
 
 from src.utils.errors import errors_models
-from src.config import config
+from src.utils.messages import messages_models
 
 
-async def command_error_detection(ctx: commands.Context, error):
+async def command_error_detection(ctx: commands.Context, error: commands.CommandError):
     async def own_command_error_message(problem, solution):
-        embed = discord.Embed(color = config["bot"]["messages"]["error"]["color"])
-        embed.add_field(name = "Проблема:", value = f"{problem}")
-        embed.add_field(name = "Решение:", value = f"{solution}")
-        embed.set_footer(text = f"При выполнении команды {ctx.command.name} возникла ошибка!")
+        embed: discord.Embed = await messages_models.generate_message_error(ctx = ctx)
+        embed.add_field(name = "Проблема:", value = f"{problem}", inline = False)
+        embed.add_field(name = "Решение:", value = f"{solution}", inline = False)
         await ctx.send(embed = embed)
 
     if isinstance(error, commands.CommandNotFound):
-        await own_command_error_message(
-                "Команда не найдена!",
-                f"Используйте существующую команду,\nкоторая есть в списке `{ctx.bot.command_prefix}help`",
-        )
+        pass
 
     elif isinstance(error, commands.DisabledCommand):
         await own_command_error_message(
