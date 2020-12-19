@@ -51,6 +51,15 @@ config = {
                         discord.ContentFilter(1): "Для участников без ролей",
                         discord.ContentFilter(2): "Для всех участников"
                 },
+
+                "status": {
+                        discord.Status("online"): "<:online:789773268873117717> В сети",
+                        discord.Status("offline"): "<:offline:789773269255454730> Оффлайн",
+                        discord.Status("dnd"): "<:dnd:789773269217443840> Не беспокоить",
+                        discord.Status("idle"): "<:idle:789773269242871818> Не активен",
+                        discord.Status("invisible"): "<:offline:789773269255454730> Невидимка"
+                },
+
                 "verification_level": {
                         discord.VerificationLevel(0): "(Пусто) Нету",
                         discord.VerificationLevel(1): "(Низкий) Подтверждённый по e-mail аккаунт",
