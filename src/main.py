@@ -1,6 +1,10 @@
+"""
+Главный файл, через который запускается бот.
+"""
+
 import os
 import site
-site.addsitedir(os.path.dirname(os.getcwd()))
+site.addsitedir(os.getcwd())  # Добавляем рабочую директорию в sys.path, для того чтобы можно было загружать утилиты и коги
 
 import discord
 from discord.ext import commands
