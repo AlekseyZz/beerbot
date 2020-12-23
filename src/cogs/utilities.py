@@ -45,6 +45,7 @@ class Utilities(commands.Cog):
                     aliases = ("информация", "инфо", "info"),
                     brief = "Группа команд для просмотра информации об обьекте",
                     usage = "information <тип обьекта> <обьект>")
+    @commands.guild_only()
     async def object_information(self, ctx: commands.Context) -> None:
         """
         Группа команд для просмотра информации об обьекте (канале, роли, эмодзи)
@@ -88,7 +89,7 @@ class Utilities(commands.Cog):
                                                 f"Голосовых каналов: {len(guild.voice_channels)}\n"
                                                 f"Ролей: {len(guild.roles)}\n"
                                                 f"Эмодзи: {len(guild.emojis)}\n"
-f"Забанено: {len(await guild.bans())}"), inline = False)
+                                                f"Забанено: {len(await guild.bans())}"), inline = False)
         embed.add_field(name = "Модерация:", value = (
                                                 f"Уровень проверки: {config['discord']['verification_level'][guild.verification_level]}\n"
                                                 f"Фильтрация контента: {config['discord']['content_filter'][guild.explicit_content_filter]}\n"
@@ -119,7 +120,7 @@ f"Забанено: {len(await guild.bans())}"), inline = False)
             role = ctx.author.top_role
 
         embed: discord.Embed = await messages_models.generate_message_success(status = "informational", ctx = ctx)
-        embed.set_author(name = f"Роль {role.name}", icon_url = ctx.guild.icon_url)
+        embed.set_author(name = f"Роль {role.name}", icon_url = channel.guild.icon_url)
         embed.add_field(name = "Общая информация:", value = (
                                                     f"ID роли: {role.id}\n"
                                                     f"Цвет: {role.color}\n"
@@ -151,7 +152,7 @@ f"Забанено: {len(await guild.bans())}"), inline = False)
             channel = ctx.channel
 
         embed: discord.Embed = await messages_models.generate_message_success(status = "informational", ctx = ctx)
-        embed.set_author(name = f'Канал {channel.name}', icon_url = ctx.guild.icon_url)
+        embed.set_author(name = f'Канал {channel.name}', icon_url = channel.guild.icon_url)
         embed.add_field(name = "Общее:", value = (
                                         f"ID: {channel.id}\n"
                                         f"Создан: {time_formatter.time_readable(channel.created_at)} ({time_formatter.timedelta_readable(channel.created_at)})\n"
@@ -190,12 +191,12 @@ f"Забанено: {len(await guild.bans())}"), inline = False)
         embed: discord.Embed = await messages_models.generate_message_success(status = "informational", ctx = ctx)
         embed.set_author(name = f"Пользователь {user.name}", icon_url = user.avatar_url)
         embed.add_field(name = "Общее:", value = (
-                                            f"ID: {user.id}"
+                                            f"ID: {user.id}\n"
                                             f"Статус: {config['discord']['status'][user.status]}\n"
                                             f"Создал аккаунт: {time_formatter.time_readable(user.created_at)} ({time_formatter.timedelta_readable(user.created_at)})\n"
                                             f"Присоединился: {time_formatter.time_readable(user.joined_at)} ({time_formatter.timedelta_readable(user.joined_at)})\n"
                                             f"Цвет: {user.color}"), inline = False)
-
+        embed.add_field(name = "")
         await ctx.send(embed = embed)
 
 
