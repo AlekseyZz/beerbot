@@ -7,9 +7,9 @@
 ## Инструкция к запуску
 1. Клонируйте репозиторий
 2. Установите [poetry](https://python-poetry.org/docs/#installation)
-3. Создайте виртуальное окружение при помощи установки зависимостей из [файла poetry.lock](https://gitlab.com/beer-server/beerbot/-/blob/master/poetry.lock) по команде `poetry install`
-4. В [конфиге](https://gitlab.com/beer-server/beerbot/-/blob/master/src/config.py) вставьте свой токен в соответствующее место 
-5. Запустите файл [main.py](https://gitlab.com/beer-server/beerbot/-/blob/master/src/main.py)
+3. Создайте виртуальное окружение при помощи установки зависимостей из [файла poetry.lock](https://github.com/AlekseyZz/beerbot/blob/master/poetry.lock) по команде `poetry install`
+4. В [конфиге](https://github.com/AlekseyZz/beerbot/blob/master/src/config.py) вставьте свой токен в соответствующее место 
+5. Запустите файл [main.py](https://github.com/AlekseyZz/beerbot/blob/master/src/main.py)
 6. Готово!
 
 ## Планы
@@ -34,5 +34,5 @@
 
 ## Контакты
 - Aleksey#4360 - Создатель Пивной Партии и основатель бота
-- dmemsm#3179 - Сооснователь и хост бота
+- dmemsm#1706 - Сооснователь и хост бота
 
