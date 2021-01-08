@@ -1,9 +1,10 @@
+import os
 import discord
 
 
 config = {
         "bot": {
-                "token": "take this on https://discord.com/developers",
+                "token": os.environ.get("TOKEN"),
                 "settings": {
                         "command_prefix": "$",
                         "case_insensitive": True,
@@ -110,6 +111,13 @@ config = {
                         discord.Status("invisible"): "<:offline:789898968737382441> Невидимый",
                         discord.Status("dnd"): "<:dnd:789898968883920927> Не беспокоить",
                         discord.Status("idle"): "<:idle:789898968632524831> Не активен",
+                },
+                "user_flags": {
+                        "hypesquad_bravery": "<:bravery:726110786233040906>",
+                        "hypesquad_brilliance": "<:brilliance:726110786229108768>",
+                        "hypesquad_balance": "<:balance:726110785654358036>",
+                        "verified_bot_developer": "<:verified_bot_developer:791240612996710400>",
+                        "early_verified_bot_developer": "<:verified_bot_developer:791240612996710400>"
                 }
         }
 }

@@ -4,7 +4,10 @@
 
 import os
 import site
-site.addsitedir(os.getcwd())  # Добавляем рабочую директорию в sys.path, для того чтобы можно было загружать утилиты и коги
+site.addsitedir(os.getcwd())  # Добавляем рабочую директорию в sys.path, для того чтобы можно было загружать утилиты и коги.
+
+import dotenv
+dotenv.load_dotenv(dotenv.find_dotenv())  # Загружаем переменные окружения.
 
 import discord
 from discord.ext import commands
