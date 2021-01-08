@@ -8,6 +8,7 @@ authors = ["AlekseyZz <Aleksey#4360>", "code-debug228 <dmemsm#3179>"]
 python = "^3.8"
 "discord.py" = "^1.5.1"
 pendulum = "^2.1.2"
+python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
